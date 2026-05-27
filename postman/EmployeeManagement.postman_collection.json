@@ -1,0 +1,157 @@
+{
+	"info": {
+		"_postman_id": "employee-management-collection",
+		"name": "Employee Management API",
+		"description": "=================================================================\n📋 PHÂN CÔNG: Phạm Phương Anh\n📁 FILE: postman/EmployeeManagement.postman_collection.json\n📝 MÔ TẢ: Postman Collection để kiểm thử API\n=================================================================\n\n▶ HƯỚNG DẪN:\n- Import file này vào Postman\n- Chạy từng request để test API\n- Chụp screenshot kết quả cho từng test case\n- Export lại collection sau khi hoàn thành test\n\n💡 CÁC TEST CASE CẦN KIỂM THỬ:\n1. GET all employees (200)\n2. GET employee by id - thành công (200)\n3. GET employee by id - không tìm thấy (404)\n4. POST - thêm nhân viên mới (201)\n5. PUT - cập nhật nhân viên (200)\n6. PUT - không tìm thấy (404)\n7. DELETE - xóa thành công (204)\n8. DELETE - không tìm thấy (404)\n9. Chụp console log hiển thị AOP log",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. GET All Employees",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employees",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "employees"]
+				},
+				"description": "Lấy danh sách toàn bộ nhân viên.\nExpected: HTTP 200 OK + JSON Array"
+			}
+		},
+		{
+			"name": "2. GET Employee by ID - Found (200)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employees/1",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "employees", "1"]
+				},
+				"description": "Lấy chi tiết nhân viên có ID = 1.\nExpected: HTTP 200 OK + JSON Object"
+			}
+		},
+		{
+			"name": "3. GET Employee by ID - Not Found (404)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employees/999",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "employees", "999"]
+				},
+				"description": "Tìm nhân viên có ID = 999 (không tồn tại).\nExpected: HTTP 404 Not Found"
+			}
+		},
+		{
+			"name": "4. POST - Add New Employee (201)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"fullName\": \"Nguyen Van A\",\n  \"department\": \"Engineering\",\n  \"salary\": 15000000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/employees",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "employees"]
+				},
+				"description": "Thêm nhân viên mới. ID sẽ tự động sinh.\nExpected: HTTP 201 Created + JSON Object với ID tự tăng"
+			}
+		},
+		{
+			"name": "5. PUT - Update Employee (200)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"fullName\": \"Nguyen Van B\",\n  \"department\": \"Marketing\",\n  \"salary\": 20000000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/employees/1",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "employees", "1"]
+				},
+				"description": "Cập nhật toàn bộ thông tin nhân viên ID = 1.\nExpected: HTTP 200 OK + JSON Object đã cập nhật"
+			}
+		},
+		{
+			"name": "6. PUT - Update Not Found (404)",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"fullName\": \"Nguyen Van X\",\n  \"department\": \"HR\",\n  \"salary\": 10000000\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/employees/999",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "employees", "999"]
+				},
+				"description": "Cập nhật nhân viên ID = 999 (không tồn tại).\nExpected: HTTP 404 Not Found"
+			}
+		},
+		{
+			"name": "7. DELETE - Delete Employee (204)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employees/1",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "employees", "1"]
+				},
+				"description": "Xóa nhân viên ID = 1.\nExpected: HTTP 204 No Content (không có response body)"
+			}
+		},
+		{
+			"name": "8. DELETE - Not Found (404)",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/employees/999",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "8080",
+					"path": ["api", "employees", "999"]
+				},
+				"description": "Xóa nhân viên ID = 999 (không tồn tại).\nExpected: HTTP 404 Not Found"
+			}
+		}
+	]
+}

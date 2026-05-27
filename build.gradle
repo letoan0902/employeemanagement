@@ -1,0 +1,44 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.14'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'org.example'
+version = '0.0.1-SNAPSHOT'
+description = 'employeemanagement'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // ===== DEPENDENCIES THEO YÊU CẦU SRS =====
+
+    // 1. Spring Web - Xây dựng RESTful API
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 2. Spring AOP - Aspect-Oriented Programming cho Logging
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+
+    // 3. Spring Validation - Validate dữ liệu đầu vào
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // 4. Jackson XML - Hỗ trợ format XML cho response
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml'
+
+    // 5. Spring Boot Test - JUnit 5 + Mockito cho Unit Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
