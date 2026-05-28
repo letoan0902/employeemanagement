@@ -34,8 +34,11 @@ package org.example.employeemanagement.exception;
 //    }
 // ====================================================================
 
-public class EmployeeNotFoundException {
+public class EmployeeNotFoundException extends  RuntimeException  {
 
     // TODO: Viết code tại đây
 
+    public EmployeeNotFoundException(String message) {
+        super(message);
+    }
 }
