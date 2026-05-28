@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static javax.swing.UIManager.get;
-import static jdk.jfr.internal.jfc.model.Constraint.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.RequestEntity.post;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
