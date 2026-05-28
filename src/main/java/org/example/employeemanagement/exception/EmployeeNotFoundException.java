@@ -6,4 +6,7 @@ public class EmployeeNotFoundException extends RuntimeException {
         super("Không tìm thấy nhân viên với mã: " + id);
     }
 
+    public EmployeeNotFoundException(String message) {
+        super(message);
+    }
 }
